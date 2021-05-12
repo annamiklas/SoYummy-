@@ -1,0 +1,61 @@
+{%extends 'temp_app.html'%}
+
+{% load static %}
+
+{% block style %} 
+<link rel="stylesheet" href="{% static 'css\recipes.css' %}">
+{% endblock style %}
+
+{% block nav %} 
+<div class="searcher">
+</div>
+{% endblock nav %}
+
+{% block content %}
+<div class="container">
+  <div class="row"> 
+  {%for obj in page_obj %}
+      <div class="card" style="width: 18rem;">
+        <a  class="card-img-link" href="{% url 'cookbook:recipe' obj.id %}"><img src="{{obj.get_photo_url}}" class="card-img-top" alt="...">
+          <h5 class="time"><img src="{% static 'images/clock.svg' %}" alt=""><img src="{% static 'images/bars-level.svg' %}" alt=""> 
+            <p>{{obj.preparation_time}}</p><p>{{obj.level}}</p></h5></a>
+        <div class="card-body">
+          <h5 class="card-title">{{obj.name}}</h5>
+          <a class="see-recipe"href="{% url 'cookbook:recipe' obj.id %}">See recipe</a>
+        </div>
+    </div>
+  {%endfor%}
+  </div> 
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li>
+      {% if page_obj.has_previous %}
+        <a class="arrow-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">
+          <img class="arrow" src="{% static 'images/left-arrow.svg' %}" alt=""></a>
+      {% endif %}
+    </li>
+    <li>
+       {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </li>
+    <li class="page-item">
+      {% if page_obj.has_next %}
+        <a class="arrow-link" href="?page={{ page_obj.next_page_number }}">
+          <img class="arrow" src="{% static 'images/right-arrow-angle.svg' %}" alt=""></a></a>          
+      {% endif %}
+    </li>
+  </ul>
+</nav>
+</div>
+
+
+{% endblock content %}
+
+
+{% block script %}
+<script>
+  input = document.querySelector('input')
+  option = document.querySelector('#id_category option')
+  input.placeholder = 'Enter phrase to search ...'
+  option.textContent = "Choose category"
+</script>
+{% endblock script %}

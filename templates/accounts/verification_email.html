@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+Hi {{user.username}},
+
+We just need to verify your email address before you can access SoYummy.
+
+Verify your email address http://{{current_site}}{% url 'accounts:activate' uid64=uid token=token %}
+
+Thanks! – The SoYummy team
+
+{% endautoescape %}

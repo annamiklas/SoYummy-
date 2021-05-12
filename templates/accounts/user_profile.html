@@ -1,0 +1,53 @@
+{%extends 'temp_app.html'%}
+
+{% load static %}
+
+{% block style %} 
+<link rel="stylesheet"  href="{% static 'css\user_profile.css' %}">
+{% endblock style %}
+
+{% block nav %} 
+<div style="flex-grow: 1">
+</div>
+{% endblock nav %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="card">
+        <img class="user_pic" src="{{cook.get_photo_url}}" alt="">
+        <div class="card-body">
+          <h6><b>Name:</b><p>{{request.user.username}}</p></h6>
+          <h6><b>E-mail:</b><p>{{request.user.email}}</p></h6>
+          <h6><b>Description:</b> <p>{{cook.description}}</p></h6>
+          <hr>
+          <a href="{% url 'accounts:edit_user' %}">Settings</a>
+          <hr>
+          <a href="{% url 'cookbook:create_recipe' %}">Add new recipe</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+      <div class="col-8 recipes">
+            <h5 class="recipe-title">Your recipes: </h5>
+            {% if recipes %}
+              {%for recipe in recipes %}
+                <div class="card recipe" style="width: 18rem;">
+                  <img src="{{recipe.get_photo_url}}" class="card-img-top" alt="...">
+                  <div class="card-body panel-card">
+                    <h5 class="card-title"><p>{{recipe.name}}</p></h5>
+                    <hr>
+                    <a class="panel" href="{% url 'cookbook:delete_recipe' recipe.id %}">Delete</a>
+                    <a class="panel" href="{% url 'cookbook:edit_recipe' recipe.id %}">Edit</a>
+                    <a class="panel" href="{% url 'cookbook:recipe' recipe.id %}">See</a>
+                  </div>
+              </div>
+            {%endfor%}
+            {% else %}
+            <h6>You don't have any recipes, add something!</h6>
+          {% endif %}
+      </div>
+  </div>
+</div>
+{% endblock content %}

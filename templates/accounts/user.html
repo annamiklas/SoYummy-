@@ -1,0 +1,42 @@
+{%extends 'temp_app.html'%}
+
+{% load static %}
+
+{% block style %} 
+<link rel="stylesheet" href="{% static 'css\user.css' %}">
+{% endblock style %}
+
+{% block nav %} 
+<div style="flex-grow: 1">
+</div>
+{% endblock nav %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="card">
+        <img class="user_pic" src="{{cook.get_photo_url}}" alt="">
+        <div class="card-body">
+          <h6><b>Name:</b><p>{{request.user.username}}</p></h6>
+          <h6><b>E-mail:</b><p>{{request.user.email}}</p></h6>
+          <h6><b>Description:</b> <p>{{cook.description}}</p></h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+      <div class="col-8 recipes">
+            <h5 class="recipe-title">Their recipes: </h5>
+            {%for recipe in recipes %}
+              <div class="card recipe" style="width: 18rem;">
+                <img src="{{recipe.get_photo_url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><p>{{recipe.name}}</p></h5>
+                  <a href="">See recipe</a>
+                </div>
+            </div>
+          {%endfor%}
+      </div>
+  </div>
+</div>
+{% endblock content %}

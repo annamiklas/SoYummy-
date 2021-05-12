@@ -1,0 +1,18 @@
+{%extends 'temp_start.html'%}
+
+{% load static %}
+
+{% block style %} 
+  <link rel="stylesheet" href="{% static 'css\start.css' %}">
+{% endblock style %}
+
+{% block content %}
+   <div class="cointainer">
+     <div class="title">
+       <h1>Do you like cooking? Do you have a lot of great ideas and want to get to know other people's ideas?
+       </h1>
+       <a type="button" href="{% url 'accounts:register' %}" class="button">Join us</a>
+       <a type="button" href="{% url 'accounts:login' %}" class="button">Log in</a>
+     </div>
+   </div>
+{% endblock %}

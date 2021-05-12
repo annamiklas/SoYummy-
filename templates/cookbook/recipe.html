@@ -1,0 +1,35 @@
+{%extends 'temp_app.html'%}
+
+{% load static %}
+
+{% block style %} 
+<link rel="stylesheet" href="{% static 'css\recipe.css' %}">
+{% endblock style %}
+
+{% block nav %} 
+<div style="flex-grow: 1">
+</div>
+{% endblock nav %}
+
+{% block content %}
+<div class="container">
+  <div class="recipe-info">
+    <h6>Create by: 
+      {% if recipe.cook.user == request.user %}
+      <a class="creator" href="{% url 'accounts:user_profile' %}">
+      {% else %}
+      <a class="creator" href="{% url 'accounts:user' cook.id %}">
+      {% endif %}
+        {{recipe.cook.user.username}}</a></h6>
+    <h5 class="title">{{recipe.name}}</h5>
+    <h6 class="category">Category:
+    {% for category in categories %}
+    {{category}}
+    {% endfor %}
+    </h6>
+     <img class="image img-thumbnail" src="{{recipe.get_photo_url}}" class="card-img-top" alt="...">
+  </div>
+  <p>Ingredniens: {{recipe.ingredients}}</p>
+  <p>Description: {{recipe.description}}</p>
+</div>
+{% endblock content %}

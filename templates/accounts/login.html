@@ -1,0 +1,26 @@
+{%extends 'temp_start.html'%}
+
+{% load static %}
+
+{% block style %} 
+  <link rel="stylesheet" href="{% static 'css\login.css' %}">
+{% endblock style %}
+
+{% block content %}
+  <div class="register-card">
+    <form method="POST" action="">
+      <img class="logo" src="{% static 'images\chef-logo.svg' %}" alt="">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username..." class="form-control">
+      <span class="input-group-text"><i class="fas fa-key"></i></span>
+      <input type="password" name="password" placeholder="Password..." class="form-control">
+      {% for message in messages %}
+      <p class="messages">{{message}}</p>
+      {% endfor %}
+      <input class="button" type="submit" value="Login">
+      <div class="link">
+        Don't have an account? <a href="{% url 'accounts:register' %}" class="ml-2">Sign Up</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
