@@ -16,22 +16,18 @@ class RegistrationForm(UserCreationForm):
         self.fields['password1'].widget.attrs['placeholder'] = 'Enter password...'
         self.fields['password2'].widget.attrs['placeholder'] = 'Re-enter password...'
 
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'card__input'
+
 
 
 class CookForm(ModelForm):
     class Meta:
         model = UserProfile
-        fields = '__all__'
-        exclude = ['user']
+        fields = ['cook_img','description']
 
 class UserForm(ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
-
-# class RecipeForm(ModelForm):
-#     class Meta:
-#         model = Recipe
-#         fields = '__all__'
-#         exclude = ['cook']
 

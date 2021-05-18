@@ -9,10 +9,19 @@
 {% block content %}
    <div class="cointainer">
      <div class="title">
+      {% if request.GET.command == 'verification' %}
+      <h1>Thank you for registering with us. We have sent you a verification email to your email address. Enter link and active your account!</h1>
+      {% else %}
+      {% if request.GET.command == 'reset_password' %}
+      <h1>Password reset email has been sent to your email address.</h1>
+      {% else %}
        <h1>Do you like cooking? Do you have a lot of great ideas and want to get to know other people's ideas?
        </h1>
+       {% endif %}
+       {% endif %}
        <a type="button" href="{% url 'accounts:register' %}" class="button">Join us</a>
        <a type="button" href="{% url 'accounts:login' %}" class="button">Log in</a>
+
      </div>
    </div>
 {% endblock %}

@@ -3,20 +3,8 @@
 {% load static %}
 
 {% block style %} 
-<style>
-  textarea, #id_category {
-    width: 400px;
-    height: 130px;
-  }
-
-  .card-body>a {
-  color: black;
-  text-decoration: none;
-}
-.card-body>a:hover {
-  font-weight: bold;
-}
-</style>
+<link rel="stylesheet"  href="{% static 'css\navbar.css' %}">
+<link rel="stylesheet"  href="{% static 'css\recipe_form.css' %}">
 {% endblock style %}
 
 {% block nav %} 
@@ -25,9 +13,10 @@
 {% endblock nav %}
 
 {% block content %}
+{% include 'navbar.html'%}
 <div class="container">
   <div class="row">
-    <div class="col-3">
+    <div class="col-3 d-none d-lg-block">
       <div class="card" style="margin: 10px">
         <img class="user_pic" src="{{request.user.userprofile.get_photo_url}}" alt="">
         <div class="card-body">
@@ -42,7 +31,7 @@
     <div class="col-1"></div>
     <div class="col-8">
             <h5>Add new recipe: </h5>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form id="conatiner" action="" method="POST" enctype="multipart/form-data">
               {% csrf_token %}
               <!-- {{form.cook}} -->
               <label for="">Dish name</label>
@@ -51,8 +40,13 @@
               <p>{{form.category}}</p>
               <label for="">Choose level of difficulty: </label>
               <p>{{form.level}}</p>
-              <label for="">Preparation time [HH.MM h]: </label>
+              <label for="">Preparation time in hour: </label>
               <p>{{form.preparation_time}}</p>
+              <label for="">Ingredients: </label>
+              {{ formset.management_form }}
+                  {% for form in formset %}
+                      {{ form.as_p }}
+                  {% endfor %}
               <label for="">Ingredients</label>
               <p>{{form.ingredients}}</p>
               <label for="">Describe</label>
@@ -65,3 +59,9 @@
   </div>
 </div>
 {% endblock content %}
+
+{% block script %}
+<script>
+
+</script>
+{% endblock %}

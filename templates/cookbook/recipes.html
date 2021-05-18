@@ -1,50 +1,85 @@
 {%extends 'temp_app.html'%}
 
 {% load static %}
+{% load widget_tweaks %}
 
 {% block style %} 
 <link rel="stylesheet" href="{% static 'css\recipes.css' %}">
+<link rel="stylesheet" href="{% static 'css\searcher.css' %}">
 {% endblock style %}
 
 {% block nav %} 
 <div class="searcher">
+    <form method="GET">
+      {{myFilter.form.search}}
+      <button class="searcher__button" type="submit">Search</button>
+    </form>
 </div>
 {% endblock nav %}
 
 {% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-ligth">
+  <a class="navbar-brand d-lg-none" href="{% url 'cookbook:recipes' %}"><img class="nav-logo" src="{% static 'images\chef_black.svg' %}" alt=""></a>
+  <a class="navbar-brand d-none d-lg-block" href="{% url 'cookbook:recipes' %}">Categories</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link 	d-lg-none" href="{% url 'accounts:user_profile' %}" class="dropdown-item">Your profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link 	d-lg-none" href="{% url 'accounts:logout' %}" class="dropdown-item">Logout</a>
+      </li>
+      {% for category in categories %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ category.get_url }}" class="dropdown-item">{{category.name}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0 d-lg-none">
+        {% render_field myFilter.form.search class="form-control mr-sm-2" %}
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
 <div class="container">
-  <div class="row"> 
+  <div class="row "> 
   {%for obj in page_obj %}
-      <div class="card" style="width: 18rem;">
-        <a  class="card-img-link" href="{% url 'cookbook:recipe' obj.id %}"><img src="{{obj.get_photo_url}}" class="card-img-top" alt="...">
-          <h5 class="time"><img src="{% static 'images/clock.svg' %}" alt=""><img src="{% static 'images/bars-level.svg' %}" alt=""> 
-            <p>{{obj.preparation_time}}</p><p>{{obj.level}}</p></h5></a>
+      <div class="card">
+        <a  class="card__img-link" href="{% url 'cookbook:recipe' obj.id %}"><img src="{{obj.get_photo_url}}" class="card__img-top card-img-top" alt="Photo of dish">
+          <h5 class="card__time"><img src="{% static 'images/clock.svg' %}" alt=""><img src="{% static 'images/bars-level.svg' %}" alt=""> 
+          <p>{{obj.preparation_time}}h</p><p>{{obj.level}}</p></h5></a>
         <div class="card-body">
           <h5 class="card-title">{{obj.name}}</h5>
-          <a class="see-recipe"href="{% url 'cookbook:recipe' obj.id %}">See recipe</a>
+          <a class="card__recipe-link" href="{% url 'cookbook:recipe' obj.id %}">See recipe</a>
         </div>
     </div>
   {%endfor%}
   </div> 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-end">
-    <li>
-      {% if page_obj.has_previous %}
-        <a class="arrow-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">
-          <img class="arrow" src="{% static 'images/left-arrow.svg' %}" alt=""></a>
-      {% endif %}
-    </li>
-    <li>
-       {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-    </li>
-    <li class="page-item">
-      {% if page_obj.has_next %}
-        <a class="arrow-link" href="?page={{ page_obj.next_page_number }}">
-          <img class="arrow" src="{% static 'images/right-arrow-angle.svg' %}" alt=""></a></a>          
-      {% endif %}
-    </li>
-  </ul>
-</nav>
+{% if page_obj.paginator.num_pages > 1 %}
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li>
+        {% if page_obj.has_previous %}
+          <a class="arrow-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">
+            <img class="arrow" src="{% static 'images/left-arrow.svg' %}" alt=""></a>
+        {% endif %}
+      </li>
+      <li>
+        {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+      </li>
+      <li class="page-item">
+        {% if page_obj.has_next %}
+          <a class="arrow-link" href="?page={{ page_obj.next_page_number }}">
+            <img class="arrow" src="{% static 'images/right-arrow-angle.svg' %}" alt=""></a></a>          
+        {% endif %}
+      </li>
+    </ul>
+  </nav>
+{% endif %}
 </div>
 
 
@@ -53,9 +88,7 @@
 
 {% block script %}
 <script>
-  input = document.querySelector('input')
-  option = document.querySelector('#id_category option')
-  input.placeholder = 'Enter phrase to search ...'
-  option.textContent = "Choose category"
+  search = document.querySelector('#id_search')
+  search.setAttribute('placeholder', 'Enter the phrase ...')
 </script>
 {% endblock script %}

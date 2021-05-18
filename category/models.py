@@ -13,7 +13,8 @@ class Category(models.Model):
 
 
     def get_url(self):
-        return reverse('recipe_category', args=[self.slug])
+        return reverse('cookbook:recipe_category', args=[self.slug])        
+    
 
     def __str__(self):
         return self.name

@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
     
 
 class UserProfile(models.Model):
   user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+  slug = models.SlugField(max_length=100)
   cook_img = models.ImageField(null=True, blank=True)
   description = models.CharField(max_length=400, null=True)
   # like_recipe = models.ManyToManyField('Recipe', null=True,  related_name='favourite', blank=True)
@@ -17,8 +19,12 @@ class UserProfile(models.Model):
       else:
           return "/static/images/anonym=user.png"
 
+  def get_url(self):
+      return reverse('accounts:user', args=[self.slug])
+
+
   # def add_like_recipe(self, idR):
   #   like_recipe.add(Recipe.objects.get(id=idR))
   
   def __str__(self):
-    return self.name
+    return self.user.username

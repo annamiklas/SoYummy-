@@ -3,7 +3,10 @@
 {% load static %}
 
 {% block style %} 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'css\recipe.css' %}">
+<link rel="stylesheet" href="{% static 'css\navbar.css' %}">
+<link rel="stylesheet" href="{% static 'css\rating.css' %}">
 {% endblock style %}
 
 {% block nav %} 
@@ -12,24 +15,64 @@
 {% endblock nav %}
 
 {% block content %}
+{% include 'navbar.html'%}
 <div class="container">
-  <div class="recipe-info">
-    <h6>Create by: 
-      {% if recipe.cook.user == request.user %}
-      <a class="creator" href="{% url 'accounts:user_profile' %}">
-      {% else %}
-      <a class="creator" href="{% url 'accounts:user' cook.id %}">
-      {% endif %}
-        {{recipe.cook.user.username}}</a></h6>
-    <h5 class="title">{{recipe.name}}</h5>
-    <h6 class="category">Category:
-    {% for category in categories %}
-    {{category}}
-    {% endfor %}
-    </h6>
-     <img class="image img-thumbnail" src="{{recipe.get_photo_url}}" class="card-img-top" alt="...">
+  <div class="row">
+    <div class="col-7">
+      <h6>Create by: 
+        {% if recipe.cook.user == request.user %}
+        <a href="{% url 'accounts:user_profile' %}">
+        {% else %}
+        <a href="{{ recipe.cook.get_url }}">
+        {% endif %}
+          {{recipe.cook.user.username}}</a></h6>
+      <h5>{{recipe.name}}</h5>
+      <h6>Category:
+      {% for category in categories %}
+      {{category}},
+      {% endfor %}
+      </h6>
+      <div class="rating-star">
+        <span>
+          <i class="fa fa-star{% if recipe.averageReview < 0.5 %}-o{% elif recipe.averageReview >= 0.5 and recipe.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
+          <i class="fa fa-star{% if recipe.averageReview < 1.5 %}-o{% elif recipe.averageReview >= 1.5 and recipe.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
+          <i class="fa fa-star{% if recipe.averageReview < 2.5 %}-o{% elif recipe.averageReview >= 2.5 and recipe.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
+          <i class="fa fa-star{% if recipe.averageReview < 3.5 %}-o{% elif recipe.averageReview >= 3.5 and recipe.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
+          <i class="fa fa-star{% if recipe.averageReview < 4.5 %}-o{% elif recipe.averageReview >= 4.5 and recipe.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
+<span>{{recipe.countReview}}</span>
+          </span>
+      </div>
+      <form action="{% url 'cookbook:submit_rate' recipe.id %}" method="POST">
+        {% csrf_token %}
+          <div class="rate">
+            <input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10" title="5"></label>
+            <input type="radio" name="rating" id="rating9" value="4.5" required /><label for="rating9" title="4.5" class="half"></label>
+            <input type="radio" name="rating" id="rating8" value="4" required /><label for="rating8" title="4"></label>
+            <input type="radio" name="rating" id="rating7" value="3.5" required /><label for="rating7" title="3.5" class="half"></label>
+            <input type="radio" name="rating" id="rating6" value="3" required /><label for="rating6" title="3"></label>
+            <input type="radio" name="rating" id="rating5" value="2.5" required /><label for="rating5" title="2.5" class="half"></label>
+            <input type="radio" name="rating" id="rating4" value="2" required /><label for="rating4" title="2"></label>
+            <input type="radio" name="rating" id="rating3" value="1.5" required /><label for="rating3" title="1.5" class="half"></label>
+            <input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2" title="1"></label>
+            <input type="radio" name="rating" id="rating1" value="0.5" required /><label for="rating1" title="0.5" class="half"></label>
+            <br>
+            <input type="submit" value="Submit Review" class="button">
+          </div>
+        </form>
+    </div>
+    <div class="col-md">
+      <img class="image img-thumbnail" src="{{recipe.get_photo_url}}" class="card-img-top" alt="...">
+    </div>
   </div>
-  <p>Ingredniens: {{recipe.ingredients}}</p>
-  <p>Description: {{recipe.description}}</p>
+  <div class="row">
+    <p>Ingredients: </p>
+    {% for ingredient in ingredients %}
+      <p>{{ingredient.name}}
+         {{ ingredient.amount }} 
+         {{ingredient.unit}}</p>
+    {% endfor %}
+    <p>Description: <p>{{recipe.description}}</p></p>    
+  </div>
+
 </div>
 {% endblock content %}

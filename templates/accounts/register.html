@@ -3,59 +3,36 @@
 {% load static %}
 
 {% block style %} 
-  <link rel="stylesheet" href="{% static 'css\register.css' %}">
+  <link rel="stylesheet" href="{% static 'css\sign_temp.css' %}">
 {% endblock style %}
 
 {% block content %}
-  <div class="register-card">
-    <form method="POST" action="">
-      <img class="logo" src="{% static 'images\chef-logo.svg' %}" alt="">
-      {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-      {% endif %}
-      {% csrf_token %}
-      {{form.username}}
-      {{form.email}}
-      {{form.password1}}
-      {{form.password2}}
-      {% for message in messages %}
-      <p id="messages">{{message}}</p>
-      {% endfor %}
-      {% if form.errors %}
-        {% for field in form %}
-            {% for error in field.errors %}
-                <div class="messages">
-                    <span>{{ error|escape }}</strong>
-                </div>
-            {% endfor %}
+  <div class="card">
+    <form class="card__form" method="POST" action="">
+      <img class="card__logo" src="{% static 'images\chef-logo.svg' %}" alt="">
+        {% csrf_token %}
+        {{form.username}}
+        {{form.email}}
+        {{form.password1}}
+        {{form.password2}}
+        {% for message in messages %}
+          <p id="card__messages">{{message}}</p>
         {% endfor %}
-      {% endif %}
-      <input class="button" type="submit" name="Create User" value="Register">
-      <div class="link">
+        {% if form.errors %}
+          {% for field in form %}
+              {% for error in field.errors %}
+                  <div class="card__messages">
+                      <span>{{ error|escape }}</strong>
+                  </div>
+              {% endfor %}
+          {% endfor %}
+        {% endif %}
+      <input class="card__button button" type="submit" name="Create User" value="Register">
+      <div class="card__link">
         Already have an account? <a href="{% url 'accounts:login' %}" class="ml-2">Log in</a>
       </div>
     </form>
   </div>
  
  
-{% endblock %}
-
-{% block script %}
-  <!-- <script>
-    var inputs = document.getElementsByTagName('input')
-    inputs[1].placeholder = 'Username..';
-    inputs[2].placeholder = 'Email..';
-    inputs[3].placeholder = 'Enter password...';
-    inputs[4].placeholder = 'Re-enter Password...';
-
-
-    for (var input in inputs) {
-      inputs[input].className += ' form-control'
-    }
-
-  </script> -->
 {% endblock %}

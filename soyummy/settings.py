@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'cookbook',
-    'category'
+    'category',
+    'widget_tweaks',
+    'sorter',
 ]
 
 MIDDLEWARE = [
@@ -66,14 +68,14 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'category.context_proccessors.get_categories'
+                'category.context_proccessors.get_categories',
+                'django.template.context_processors.request',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'soyummy.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -137,9 +139,22 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+ALLOWED_HOSTS = [
+    '192.168.0.170',
+    '172.20.10.2',
+]
+
+# Email veryfication sender
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'soyummy.cookapp@gmail.com'
 EMAIL_HOST_PASSWORD = 'soyummy2021'
 EMAIL_USE_TLS = True
+
+
+# Sorter data
+
+SORTER_ALLOWED_CRITERIA = {
+    'sort': ['name', 'creation_date'],
+}

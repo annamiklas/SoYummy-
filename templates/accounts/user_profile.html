@@ -4,6 +4,7 @@
 
 {% block style %} 
 <link rel="stylesheet"  href="{% static 'css\user_profile.css' %}">
+<link rel="stylesheet"  href="{% static 'css\navbar.css' %}">
 {% endblock style %}
 
 {% block nav %} 
@@ -12,11 +13,12 @@
 {% endblock nav %}
 
 {% block content %}
+{% include 'navbar.html'%}
 <div class="container">
   <div class="row">
-    <div class="col-3">
-      <div class="card">
-        <img class="user_pic" src="{{cook.get_photo_url}}" alt="">
+    <div class="col-md-3">
+      <div class="card user">
+        <img class="user__pic" src="{{cook.get_photo_url}}" alt="">
         <div class="card-body">
           <h6><b>Name:</b><p>{{request.user.username}}</p></h6>
           <h6><b>E-mail:</b><p>{{request.user.email}}</p></h6>
@@ -28,19 +30,19 @@
         </div>
       </div>
     </div>
-    <div class="col-1"></div>
-      <div class="col-8 recipes">
-            <h5 class="recipe-title">Your recipes: </h5>
+    <div class="col-md"></div>
+      <div class="col-md-8 recipes">
+            <h5 class="recipes__title">Your recipes: </h5>
             {% if recipes %}
               {%for recipe in recipes %}
-                <div class="card recipe" style="width: 18rem;">
+                <div class="card recipe-card" style="width: 18rem;">
                   <img src="{{recipe.get_photo_url}}" class="card-img-top" alt="...">
-                  <div class="card-body panel-card">
-                    <h5 class="card-title"><p>{{recipe.name}}</p></h5>
+                  <div class="card-body recipe-card__panel">
+                    <h5 class="recipe-card__title"><p>{{recipe.name}}</p></h5>
                     <hr>
-                    <a class="panel" href="{% url 'cookbook:delete_recipe' recipe.id %}">Delete</a>
-                    <a class="panel" href="{% url 'cookbook:edit_recipe' recipe.id %}">Edit</a>
-                    <a class="panel" href="{% url 'cookbook:recipe' recipe.id %}">See</a>
+                    <a class="recipe-card__link" href="{% url 'cookbook:delete_recipe' recipe.id %}">Delete</a>
+                    <a class="recipe-card__link" href="{% url 'cookbook:edit_recipe' recipe.id %}">Edit</a>
+                    <a class="recipe-card__link" href="{% url 'cookbook:recipe' recipe.id %}">See</a>
                   </div>
               </div>
             {%endfor%}
@@ -48,6 +50,5 @@
             <h6>You don't have any recipes, add something!</h6>
           {% endif %}
       </div>
-  </div>
 </div>
 {% endblock content %}
