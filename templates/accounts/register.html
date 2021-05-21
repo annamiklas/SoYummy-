@@ -15,14 +15,12 @@
         {{form.email}}
         {{form.password1}}
         {{form.password2}}
-        {% for message in messages %}
-          <p id="card__messages">{{message}}</p>
-        {% endfor %}
+
         {% if form.errors %}
           {% for field in form %}
               {% for error in field.errors %}
                   <div class="card__messages">
-                      <span>{{ error|escape }}</strong>
+                      <strong>{{ error|escape }}</strong>
                   </div>
               {% endfor %}
           {% endfor %}

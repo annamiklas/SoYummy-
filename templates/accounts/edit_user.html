@@ -4,6 +4,7 @@
 
 {% block style %} 
 <link rel="stylesheet"  href="{% static 'css\navbar.css' %}">
+<link rel="stylesheet"  href="{% static 'css\recipe_form.css' %}">
 {% endblock style %}
 
 {% block nav %} 
@@ -19,9 +20,9 @@
       <div class="card" style="margin: 10px">
         <img class="user_pic" src="{{cook.get_photo_url}}" alt="">
         <div class="card-body">
-          <h6><b>Name:</b><p>{{request.user.username}}</p></h6>
-          <h6><b>E-mail:</b><p>{{request.user.email}}</p></h6>
-          <h6><b>Description:</b><p>{{cook.description}}</p></h6>
+          <span><b>Name:</b><p>{{request.user.username}}</p></span>
+          <span><b>E-mail:</b><p>{{request.user.email}}</p></span>
+          <span><b>Description:</b><p>{{cook.description}}</p></span>
           <hr>
           <a href="{% url 'cookbook:create_recipe' %}">Add new recipe</a>
         </div>
@@ -29,19 +30,19 @@
     </div>
     <div class="col-1"></div>
     <div class="col-8">
-            <h5>Edit your data: </h5>
-            <form action="" method="POST" enctype="multipart/form-data">
-              {% csrf_token %}
-              <label for="">Name: </label>
-              <p>{{user_form.username}}</p>
-              <label for="">Email: </label>
-              <p>{{user_form.email}}</p>
-              <label for="">Description: </label>
-              <p>{{cook_form.description}}</p>
-              <label for="">Profile image: </label>
-              <p>{{cook_form.cook_img}}</p>
-              <input type="submit" name="Submit">
-          </form>
+      <h5>Edit your data: </h5>
+       <form action="" method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+         <label>Name: </label>
+         <p>{{user_form.username}}</p>
+         <label>Email: </label>
+         <p>{{user_form.email}}</p>
+         <label>Description: </label>
+         <p>{{cook_form.description}}</p>
+         <label>Profile image: </label>
+         <p>{{cook_form.cook_img}}</p>
+         <input type="submit" name="Submit">
+       </form>
     </div>
   </div>
 </div>

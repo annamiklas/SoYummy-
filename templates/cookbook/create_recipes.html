@@ -20,9 +20,9 @@
       <div class="card" style="margin: 10px">
         <img class="user_pic" src="{{request.user.userprofile.get_photo_url}}" alt="">
         <div class="card-body">
-          <h6><b>Name:</b><p>{{request.user.username}}</p></h6>
-          <h6><b>E-mail:</b><p>{{request.user.email}}</p></h6>
-          <h6><b>Description:</b><p>{{request.user.userprofile.description}}</p></h6>
+          <span><b>Name:</b><p>{{request.user.username}}</p></span>
+          <span><b>E-mail:</b><p>{{request.user.email}}</p></span>
+          <span><b>Description:</b><p>{{request.user.userprofile.description}}</p></span>
           <hr>
           <a href="{% url 'accounts:edit_user' %}">Settings</a>
         </div>
@@ -31,27 +31,30 @@
     <div class="col-1"></div>
     <div class="col-8">
             <h5>Add new recipe: </h5>
-            <form id="conatiner" action="" method="POST" enctype="multipart/form-data">
+            <form id="container" action="" method="POST" enctype="multipart/form-data">
               {% csrf_token %}
               <!-- {{form.cook}} -->
-              <label for="">Dish name</label>
+              <label>Dish name</label>
               <p>{{form.name}}</p>
-              <label for="">Choose category (click Shift to select more)</label>
+              <label>Choose category (click Ctrl to select more)</label>
               <p>{{form.category}}</p>
-              <label for="">Choose level of difficulty: </label>
+              <label>Choose level of difficulty: </label>
               <p>{{form.level}}</p>
-              <label for="">Preparation time in hour: </label>
+              <label>Preparation time in hour: </label>
               <p>{{form.preparation_time}}</p>
-              <label for="">Ingredients: </label>
+              <label>Ingredients: </label>
               {{ formset.management_form }}
                   {% for form in formset %}
-                      {{ form.as_p }}
+                    <div class="ing-form">
+                      <hr>
+                      {{ form.as_p}}
+                    </div>
                   {% endfor %}
-              <label for="">Ingredients</label>
-              <p>{{form.ingredients}}</p>
-              <label for="">Describe</label>
+              <button class="button" id="add-more" type="button">Add More</button>
+              <br>
+              <label>Describe</label>
               <p>{{form.description}}</p>
-              <label for="">Image</label>
+              <label>Image</label>
               <p>{{form.recipe_img}}</p>
               <input type="submit" name="Submit">
             </form>
@@ -62,6 +65,21 @@
 
 {% block script %}
 <script>
-
+    let ingForm = document.querySelectorAll(".ing-form")
+    let container = document.querySelector("#container")
+    let addButton = document.querySelector("#add-more")
+    let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+    let formNum = ingForm.length-1
+    addButton.addEventListener('click', addForm)
+    function addForm(e){
+        e.preventDefault()
+        let newForm = ingForm[0].cloneNode(true)
+        let formRegex = RegExp(`form-(\\d){1}-`,'g')
+        formNum++
+        newForm.innerHTML = newForm.innerHTML.replace(formRegex,'form-'+formNum+'-')
+        container.insertBefore(newForm, addButton)
+        
+        totalForms.setAttribute('value', `${formNum+1}`)
+    }
 </script>
 {% endblock %}

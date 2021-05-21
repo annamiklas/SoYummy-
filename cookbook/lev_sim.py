@@ -1,20 +1,6 @@
 from django.db.models import Func
 
-class Levenshtein(Func):
-    template = "%(function)s(%(expressions)s, '%(search_term)s', %(ins_cost)d, %(del_cost)d, %(sub_cost)d)"
-    function = 'levenshtein'
 
-    def __init__(self, expression, search_term, ins_cost=1, del_cost=1, sub_cost=1, **extras):
-        super(Levenshtein, self).__init__(
-            expression,
-            search_term=search_term,
-            ins_cost=ins_cost,
-            del_cost=del_cost,
-            sub_cost=sub_cost,
-            **extras
-        )
-
-        
 def levenshtein_distance(first, second):
     first_len = len(first)
     second_len = len(second)

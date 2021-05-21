@@ -27,14 +27,14 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link 	d-lg-none" href="{% url 'accounts:user_profile' %}" class="dropdown-item">Your profile</a>
+        <a class="nav-link 	d-lg-none dropdown-item" href="{% url 'accounts:user_profile' %}" >Your profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link 	d-lg-none" href="{% url 'accounts:logout' %}" class="dropdown-item">Logout</a>
+        <a class="nav-link 	d-lg-none dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
       </li>
       {% for category in categories %}
       <li class="nav-item">
-        <a class="nav-link" href="{{ category.get_url }}" class="dropdown-item">{{category.name}}</a>
+        <a class="nav-link dropdown-item" href="{{ category.get_url }}">{{category.name}}</a>
       </li>
       {% endfor %}
     </ul>
@@ -74,7 +74,7 @@
       <li class="page-item">
         {% if page_obj.has_next %}
           <a class="arrow-link" href="?page={{ page_obj.next_page_number }}">
-            <img class="arrow" src="{% static 'images/right-arrow-angle.svg' %}" alt=""></a></a>          
+            <img class="arrow" src="{% static 'images/right-arrow-angle.svg' %}" alt=""></a>
         {% endif %}
       </li>
     </ul>

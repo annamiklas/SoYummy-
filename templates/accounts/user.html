@@ -20,25 +20,31 @@
 
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light bg-ligth">
-  <a class="navbar-brand d-lg-none" href="{% url 'cookbook:recipes' %}"><img class="nav-logo" src="{% static 'images\chef_black.svg' %}" alt=""></a>
+  <a class="navbar-brand d-lg-none" href="{% url 'cookbook:recipes' %}">
+    <img class="nav-logo" src="{% static 'images\chef_black.svg' %}" alt=""></a>
   <a class="navbar-brand d-none d-lg-block" href="{% url 'accounts:user' cook.slug %}">Categories</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item ">
-        <a class="nav-link 	d-lg-none" href="{% url 'accounts:user_profile' %}" class="dropdown-item">Your profile</a>
+        <a class="nav-link 	d-lg-none dropdown-item" href="{% url 'accounts:user_profile' %}">Your profile</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link 	d-lg-none" href="{% url 'accounts:logout' %}" class="dropdown-item">Logout</a>
+        <a class="nav-link 	d-lg-none dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
       </li>
       <li class="nav-item d-lg-none ">
-        <a class="nav-link" href="{% url 'accounts:user' cook.slug %}" class="dropdown-item">All</a>
+        <a class="nav-link dropdown-item" href="{% url 'accounts:user' cook.slug %}">All</a>
       </li>
       {% for category in categories %}
       <li class="nav-item ">
-        <a class="nav-link" href="{% url 'accounts:recipe_category_user' cook.slug category.slug %}" class="dropdown-item">{{category.name}}</a>
+        <a class="nav-link dropdown-item" href="{% url 'accounts:recipe_category_user' cook.slug category.slug %}">{{category.name}}</a>
       </li>
       {% endfor %}
     </ul>
@@ -54,9 +60,9 @@
       <div class="card user">
         <img class="user_pic" src="{{cook.get_photo_url}}" alt="">
         <div class="card-body">
-          <h6><b>Name:</b><p>{{cook.user.username}}</p></h6>
-          <h6><b>E-mail:</b><p>{{cook.user.email}}</p></h6>
-          <h6><b>Description:</b> <p>{{cook.description}}</p></h6>
+          <span><b>Name:</b><p>{{cook.user.username}}</p></span>
+          <span><b>E-mail:</b><p>{{cook.user.email}}</p></span>
+          <span><b>Description:</b> <p>{{cook.description}}</p></span>
         </div>
       </div>
     </div>
@@ -68,7 +74,7 @@
                 <a href="{% url 'cookbook:recipe' recipe.id %}">
                   <img src="{{recipe.get_photo_url}}" class="card-img-top" alt="..."></a>
                 <div class="card-body">
-                  <h5 class="card-title"><p>{{recipe.name}}</p></h5>
+                  <h5 class="card-title">{{recipe.name}}</h5>
                   <a href="{% url 'cookbook:recipe' recipe.id %}">See recipe</a>
                 </div>
             </div>

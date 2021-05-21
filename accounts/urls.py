@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path, include
 
 from . import views
@@ -6,16 +5,16 @@ from . import views
 app_name = 'accounts'
 
 urlpatterns = [
-    path('register/', views.registerPage, name='register'),
-    path('login/', views.loginPage, name='login'),
-    path('logout/', views.logoutPage, name='logout'),
+    path('register/', views.register_page, name='register'),
+    path('login/', views.login_page, name='login'),
+    path('logout/', views.logout_page, name='logout'),
     path('activate/<uid64>/<token>/', views.activate, name='activate'),
-    path('reset_password/<uid64>/<token>/', views.resetPassword, name='reset_password'),
-    path('new_password/', views.newPassword, name='new_password'),
-    path('forget_password/', views.forgertPassword, name='forget_password'),
+    path('reset_password/<uid64>/<token>/', views.reset_password, name='reset_password'),
+    path('new_password/', views.new_password, name='new_password'),
+    path('forgot_password/', views.forgot_password, name='forgot_password'),
     
-    path('user_profile/', views.userProfilePage, name="user_profile"),
-    path('edit_user/', views.editUserPage, name="edit_user"),
-    path('user/<str:user_slug>', views.userPage, name="user"),
-    path('user/<str:user_slug>/<str:category_slug>/', views.userPage, name="recipe_category_user"),
+    path('user_profile/', views.user_profile_page, name="user_profile"),
+    path('edit_user/', views.edit_user_page, name="edit_user"),
+    path('user/<str:user_slug>', views.user_page, name="user"),
+    path('user/<str:user_slug>/<str:category_slug>/', views.user_page, name="recipe_category_user"),
 ]

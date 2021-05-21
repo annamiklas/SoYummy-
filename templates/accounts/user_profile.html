@@ -20,9 +20,9 @@
       <div class="card user">
         <img class="user__pic" src="{{cook.get_photo_url}}" alt="">
         <div class="card-body">
-          <h6><b>Name:</b><p>{{request.user.username}}</p></h6>
-          <h6><b>E-mail:</b><p>{{request.user.email}}</p></h6>
-          <h6><b>Description:</b> <p>{{cook.description}}</p></h6>
+          <span><b>Name:</b><p>{{request.user.username}}</p></span>
+          <span><b>E-mail:</b><p>{{request.user.email}}</p></span>
+          <span><b>Description:</b> <p>{{cook.description}}</p></span>
           <hr>
           <a href="{% url 'accounts:edit_user' %}">Settings</a>
           <hr>
@@ -38,7 +38,7 @@
                 <div class="card recipe-card" style="width: 18rem;">
                   <img src="{{recipe.get_photo_url}}" class="card-img-top" alt="...">
                   <div class="card-body recipe-card__panel">
-                    <h5 class="recipe-card__title"><p>{{recipe.name}}</p></h5>
+                    <h5 class="recipe-card__title">{{recipe.name}}</h5>
                     <hr>
                     <a class="recipe-card__link" href="{% url 'cookbook:delete_recipe' recipe.id %}">Delete</a>
                     <a class="recipe-card__link" href="{% url 'cookbook:edit_recipe' recipe.id %}">Edit</a>
@@ -50,5 +50,6 @@
             <h6>You don't have any recipes, add something!</h6>
           {% endif %}
       </div>
-</div>
+    </div>
+  </div>
 {% endblock content %}
