@@ -1,0 +1,16 @@
+textarea, #id_category {
+    max-width: 250px;
+    min-width: 150px;
+    height: 100px;
+    margin-right: 20px;
+  }
+
+.card-body{
+  a {
+  color: black;
+  text-decoration: none;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}

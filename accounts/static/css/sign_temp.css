@@ -1,0 +1,86 @@
+.card {
+  height: 400px;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
+  margin: 30px;
+  -webkit-box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+          box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
+.card__form {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.card__logo {
+  height: 60px;
+  width: 60px;
+  -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
+}
+
+.card__button {
+  padding: 3px 10px;
+  font-size: 20px;
+}
+
+.card__input {
+  width: 80%;
+  border: 0;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  font-size: 15px;
+  padding: 2px;
+  margin: 2px;
+  cursor: pointer;
+  outline: none;
+}
+
+.card__link {
+  font-size: 15px;
+  color: #303030;
+}
+
+.card__link a {
+  color: #303030;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card__link a:hover {
+  color: black;
+}
+
+.card label {
+  margin: 5px 0;
+  font-size: 15px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  padding-left: 10%;
+}
+
+.card__messages {
+  color: red;
+  font-size: 14px;
+  margin: 0 10px;
+}
+/*# sourceMappingURL=sign_temp.css.map */

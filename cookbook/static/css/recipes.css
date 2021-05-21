@@ -1,0 +1,138 @@
+.card {
+  margin: 30px;
+  -ms-flex-preferred-size: 25%;
+      flex-basis: 25%;
+  min-width: 272px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 0;
+}
+
+.card__img-top {
+  border-radius: 0;
+  -webkit-filter: blur(0) brightness(100%);
+          filter: blur(0) brightness(100%);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.card__img-link {
+  position: relative;
+}
+
+.card__img-link:hover .card-img-top {
+  -webkit-filter: blur(1px) brightness(60%);
+          filter: blur(1px) brightness(60%);
+}
+
+.card__img-link:hover > h5 {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.card__time {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 80px);
+  height: 50px;
+  margin: 10px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  color: white;
+  text-decoration: none;
+  z-index: 2;
+  color: white;
+  width: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px;
+}
+
+.card__time img {
+  height: 50px;
+  margin: 10px;
+}
+
+.card__time > p {
+  margin: 0 auto;
+}
+
+.card__recipe-link {
+  color: black;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.card__recipe-link:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+.row {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+.like-icon {
+  height: 25px;
+  width: 25px;
+}
+
+.like-link {
+  float: right;
+}
+
+.arrow {
+  height: 20px;
+  margin: 0 10px;
+}
+
+.arrow-link {
+  outline: none;
+}
+
+.dropdown-item {
+  display: inline;
+  color: black;
+}
+
+.dropdown-item:hover {
+  color: #616161;
+  background-color: rgba(255, 255, 255, 0.308);
+}
+
+.navbar-brand {
+  margin-left: 10%;
+}
+
+.navbar-toggler {
+  margin-right: 10%;
+}
+
+.nav-item {
+  margin-left: 20px;
+}
+
+.form-control {
+  width: 60%;
+  display: inline;
+  margin: 10px;
+}
+
+.nav-logo {
+  height: 40px;
+  width: 40px;
+  margin: 10px;
+}
+/*# sourceMappingURL=recipes.css.map */

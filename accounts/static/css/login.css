@@ -1,0 +1,10 @@
+.login-card__logo {
+  -ms-flex-preferred-size: 35%;
+      flex-basis: 35%;
+}
+
+.login-card__messages {
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
+}
+/*# sourceMappingURL=login.css.map */

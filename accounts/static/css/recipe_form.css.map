@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,EAAE,YAAY,CAAC;EACnB,SAAS,EAAE,KAAK;EAChB,SAAS,EAAE,KAAK;EAChB,MAAM,EAAE,KAAK;EACb,YAAY,EAAE,IAAI;CACnB;;AAEH,AACE,UADQ,CACR,CAAC,CAAC;EACF,KAAK,EAAE,KAAK;EACZ,eAAe,EAAE,IAAI;CAIpB;;AAPH,AAII,UAJM,CACR,CAAC,AAGE,MAAM,CAAC;EACN,WAAW,EAAE,IAAI;CAClB",
+    "sources": [
+        "../sass/recipe_form.scss"
+    ],
+    "names": [],
+    "file": "recipe_form.css"
+}

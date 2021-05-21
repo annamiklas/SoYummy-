@@ -1,0 +1,42 @@
+
+.container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 992px) {
+    & {
+      width: 80%;
+    }
+  }
+}
+
+
+.image{
+  height: 40vh;
+  margin-left:auto ;
+  margin-bottom: 30px;
+  grid-area: img;
+}
+
+
+.nav-logo{
+  height: 40px;
+  width:  40px;
+  margin: 10px;
+}
+
+.navbar-brand {
+  margin-left: 10%;
+}
+
+.navbar-toggler{
+  margin-right: 10%;
+}
+
+.nav-item{
+  margin-left: 20px;
+}
+
+.description{
+  margin-top: 10px;
+}

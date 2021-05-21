@@ -1,0 +1,44 @@
+
+.user {
+  max-width: 250px;
+  min-width: 200px;
+  a {
+    color:black;
+    text-decoration: none;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+  &____pic{
+    max-width: 250px;
+    height: auto;
+  }
+}
+
+.card {
+  margin: 10px auto;
+  min-width: 210px;
+}
+
+.recipe{
+  flex-basis: 40%;
+}
+.recipe-title{
+  flex-basis: 100%;
+}
+
+.recipes{
+  display: flex;
+  flex-wrap: wrap ;
+
+}
+
+
+.card-body>a {
+  color: black;
+  text-decoration: none;
+}
+
+.card-body>a:hover {
+  font-weight: bold;
+}

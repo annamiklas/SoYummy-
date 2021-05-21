@@ -1,0 +1,12 @@
+footer {
+  margin-top: 50px;
+  max-height: 50px;
+  justify-self: flex-end;
+
+}
+.content{
+  text-align: center;
+  color: gray;
+  padding-top: 8px;
+  height: 50px;
+}

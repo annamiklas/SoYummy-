@@ -1,0 +1,51 @@
+.user {
+  max-width: 250px;
+  min-width: 200px;
+}
+
+.user a {
+  color: black;
+  text-decoration: none;
+}
+
+.user a:hover {
+  font-weight: bold;
+}
+
+.user____pic {
+  max-width: 250px;
+  height: auto;
+}
+
+.card {
+  margin: 10px auto;
+  min-width: 210px;
+}
+
+.recipe {
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
+}
+
+.recipe-title {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+
+.recipes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.card-body > a {
+  color: black;
+  text-decoration: none;
+}
+
+.card-body > a:hover {
+  font-weight: bold;
+}
+/*# sourceMappingURL=user.css.map */

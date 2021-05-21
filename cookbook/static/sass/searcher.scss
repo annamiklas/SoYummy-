@@ -1,0 +1,50 @@
+
+.searcher {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  input, select {
+    width: 400px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.308);
+    border-radius: 30px;
+    border: 2px solid white;
+    color: white;
+    padding: 3px;
+    margin-bottom: 60px;
+    margin-right: 20px;
+    padding-left: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  select{
+    width: 200px;
+  }
+
+  input:hover, select:hover{
+    background-color: rgba(255, 255, 255, 0.24);
+  }
+
+  input::placeholder{
+    color: white;
+  }
+
+  &__button {
+    height: 40px;
+    width: 80px;
+    background-color: rgba(255, 255, 255, 0.288);
+    border-radius: 20px;
+    border:2px solid white;
+    color: white;
+  
+    &:hover  {
+      background-color: rgba(255, 255, 255, 0.24);
+    }
+  }
+  
+
+}

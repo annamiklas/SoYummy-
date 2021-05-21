@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background-image: url("../images/bcg.jpeg");
+  background-size: cover;
+  background-position: bottom;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    background-image: url("../images/bcg_mini.jpeg");
+  }
+}
+
+
+.button {
+  display: inline-block;
+  width: 150px;
+  padding: 4px 10px;
+  margin: 20px;
+  font-size: 25px;
+  background-color: transparent;
+  border-radius: 25px;
+  border: 2px solid black;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover {
+  color: white;
+  background-color: black;
+}
