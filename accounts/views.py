@@ -20,8 +20,8 @@ from cookbook.filters import RecipeFilter
 def send_email(request, email, user, html, subject):
     current_site = get_current_site(request)
     message = render_to_string(f'accounts/{html}.html', {
-        'user': user,
         'current_site': current_site,
+        'user': user,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': default_token_generator.make_token(user),
     })
