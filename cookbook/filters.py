@@ -9,18 +9,18 @@ class RecipeFilter(django_filters.FilterSet):
 
     class Meta:
         model = Recipe
-        fields = ['search', 'category']
+        fields = ['search']
 
 
     def my_filter(self, queryset, name, value):
-        recipes = Recipe.objects.all()
         filtered_recipes = []
-        for recipe in recipes:
-            for word in recipe.name.split():
+
+        for query in queryset:
+            for word in query.name.split():
                 if not levenshtein_distance(word, value) > 2:
-                    filtered_recipes.append(recipe.id)
-            ingredients = Ingredient.objects.filter(recipe=recipe)
+                    filtered_recipes.append(query.id)
+            ingredients = Ingredient.objects.filter(recipe=query)
             for word in ingredients:
                 if not levenshtein_distance(word.name, value) > 2:
-                    filtered_recipes.append(recipe.id)
+                    filtered_recipes.append(query.id)
         return Recipe.objects.filter(id__in=filtered_recipes)
