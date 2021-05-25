@@ -137,7 +137,7 @@ def create_recipe_page(request):
 
 
 @login_required
-def delete_recipe(idR):
+def delete_recipe(request, idR):
     recipe = Recipe.objects.get(id=idR)
     recipe.delete()
     return redirect('accounts:user_profile')
