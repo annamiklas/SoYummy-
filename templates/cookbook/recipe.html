@@ -23,7 +23,7 @@
         {% if recipe.cook.user == request.user %}
         <a href="{% url 'accounts:user_profile' %}">{{recipe.cook.user.username}}</a>
         {% else %}
-        <a href="{{ recipe.cook.get_url }}">{{recipe.cook.user.username}}</a>
+        <a href="{% url 'accounts:user' recipe.cook.id %}">{{recipe.cook.user.username}}</a>
         {% endif %}
         </h6>
       <h5>{{recipe.name}}</h5>

@@ -42,7 +42,6 @@ def register_page(request):
             )
             send_email(request, email, user, 'verification_email', 'SoYummy! Verification link')
             return redirect('/?command=verification')
-        # else handled in html
     else:
         form = RegistrationForm()
 
@@ -129,9 +128,9 @@ def edit_user_page(request):
 
 
 @login_required
-def user_page(request, user_slug=None, category_slug=None):
-    if user_slug:
-        cook = get_object_or_404(UserProfile, slug=user_slug)
+def user_page(request, user_id=None, category_slug=None):
+    if user_id:
+        cook = get_object_or_404(UserProfile, id=user_id)
         if category_slug:
             category = get_object_or_404(Category, slug=category_slug)
             recipes = cook.creator.filter(category=category).order_by('-creation_date')
@@ -165,9 +164,9 @@ def forgot_password(request):
     return render(request, 'accounts/forgot_password.html')
 
 
-def reset_password(request, uidb64, token):
+def reset_password(request, uid64, token):
     try:
-        uidb = urlsafe_base64_decode(uidb64).decode()
+        uidb = urlsafe_base64_decode(uid64).decode()
         user = User._default_manager.get(pk=uidb)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None

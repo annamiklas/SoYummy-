@@ -15,6 +15,6 @@ urlpatterns = [
     
     path('user_profile/', views.user_profile_page, name="user_profile"),
     path('edit_user/', views.edit_user_page, name="edit_user"),
-    path('user/<str:user_slug>', views.user_page, name="user"),
-    path('user/<str:user_slug>/<str:category_slug>/', views.user_page, name="recipe_category_user"),
+    path('user/<str:user_id>', views.user_page, name="user"),
+    path('user/<str:user_id>/<str:category_slug>/', views.user_page, name="recipe_category_user"),
 ]
