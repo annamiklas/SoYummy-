@@ -35,10 +35,10 @@ class Recipe(models.Model):
 
     def average_rating(self):
         rating = Rating.objects.filter(recipe=self).aggregate(average=Avg('rating'))
-        avg = 0
+        average = 0
         if rating['average']:
-            avg = float(rating['average'])
-        return avg
+            average = float("{:.2f}".format(rating['average']))
+        return average
 
     def count_rating(self):
         rating = Rating.objects.filter(recipe=self).aggregate(count=Count('id'))

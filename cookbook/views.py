@@ -27,15 +27,10 @@ def recipes_page(request, category_slug=None):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # fav_list = request.user.cook.like_recipe.all()
-    # print(fav_list)
-
     context = {
         'page_number': page_number,
         'page_obj': page_obj,
         'myFilter': myFilter,
-        # 'fav_list': fav_list,
-
     }
     return render(request, 'cookbook/recipes.html', context)
 
@@ -52,16 +47,13 @@ def edit_recipe_page(request, idR):
         form = RecipeForm(request.POST, request.FILES, instance=recipe)
         formset = IngredientFormSet(request.POST or None, queryset=ingredients)
         if form.is_valid():
-            if len(form.cleaned_data.get('name')) < 0:
-                messages.error(request, 'Description is too short!')
-            else:
-                form.save()
-                if formset.is_valid():
-                    Ingredient.objects.filter(recipe=recipe).delete()
-                    for form_ing in formset:
-                        if form_ing.is_valid() and form_ing.cleaned_data.get('name'):
-                            create_ingredient(form_ing, recipe)
-                    return redirect('accounts:user_profile')
+            form.save()
+            if formset.is_valid():
+                Ingredient.objects.filter(recipe=recipe).delete()
+                for form_ing in formset:
+                    if form_ing.is_valid() and form_ing.cleaned_data.get('name'):
+                        create_ingredient(form_ing, recipe)
+                return redirect('accounts:user_profile')
         else:
             messages.error('Some field is required!')
             formset = IngredientFormSet(queryset=ingredients)

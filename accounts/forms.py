@@ -24,7 +24,7 @@ class RegistrationForm(UserCreationForm):
 class CookForm(ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['cook_img','description']
+        fields = ['user_img','description']
 
 class UserForm(ModelForm):
     class Meta:
