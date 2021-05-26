@@ -26,8 +26,6 @@ SECRET_KEY = ''
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -150,9 +148,3 @@ EMAIL_HOST_USER = 'soyummy.cookapp@gmail.com'
 EMAIL_HOST_PASSWORD = 'soyummy2021'
 EMAIL_USE_TLS = True
 
-
-# Sorter data
-
-SORTER_ALLOWED_CRITERIA = {
-    'sort': ['name', 'creation_date'],
-}
