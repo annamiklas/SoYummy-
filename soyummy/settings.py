@@ -145,6 +145,6 @@ ALLOWED_HOSTS = [
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'soyummy.cookapp@gmail.com'
-EMAIL_HOST_PASSWORD = 'soyummy2021'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 
